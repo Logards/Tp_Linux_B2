@@ -34,9 +34,10 @@ host = ''
 parser = argparse.ArgumentParser(description="Usage: allows you to communicate with a server")
 parser.add_argument("-p", "--port", action="store", help="change the default port by the argument")
 args = parser.parse_args()
+logger.info(os.environ.get('CALC_PORT'))
 if os.environ.get('CALC_PORT') is not None:
     port = int(os.environ.get('CALC_PORT'))
-if args.port is None:
+elif args.port is None:
     port = 13337
 elif int(args.port) < 0 or int(args.port) > 65535:
     print("ERROR Le port spécifié n'est pas un port possible (de 0 à 65535).")
